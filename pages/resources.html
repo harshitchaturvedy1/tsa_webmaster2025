@@ -82,137 +82,27 @@
 
       <!-- Sort Options -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <p style="color: #666;">Showing <strong>24</strong> resources</p>
-        <select style="padding: 0.5rem 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
-          <option>Sort by: A-Z</option>
-          <option>Sort by: Category</option>
-          <option>Sort by: Most Popular</option>
-          <option>Sort by: Recently Added</option>
+        <p id="resource-count" style="color: #666;">Loading resources...</p>
+        <select id="sort-select" style="padding: 0.5rem 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
+          <option value="az">Sort by: A-Z</option>
+          <option value="category">Sort by: Category</option>
         </select>
       </div>
 
       <!-- Resources Grid -->
-      <div class="cards-grid">
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-house-line"></i></div>
-            <span class="resource-card-category">Housing</span>
-          </div>
-          <h3>Forsyth Housing Authority</h3>
-          <p>Affordable housing programs, rental assistance, and Section 8 voucher support for eligible residents.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-bowl-food"></i></div>
-            <span class="resource-card-category">Food</span>
-          </div>
-          <h3>Forsyth County Food Pantry</h3>
-          <p>Emergency food assistance and weekly food distribution for families in need throughout the county.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-            <span><i class="ph ph-clock"></i> Mon-Fri 9am-5pm</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-stethoscope"></i></div>
-            <span class="resource-card-category">Healthcare</span>
-          </div>
-          <h3>Community Health Center</h3>
-          <p>Affordable primary care, dental, and vision services on a sliding fee scale based on income.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-heart"></i></div>
-            <span class="resource-card-category">Mental Health</span>
-          </div>
-          <h3>Avita Community Partners</h3>
-          <p>Comprehensive behavioral health services including counseling, crisis support, and substance abuse treatment.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-            <span><i class="ph ph-clock"></i> 24/7 Crisis Line</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-graduation-cap"></i></div>
-            <span class="resource-card-category">Education</span>
-          </div>
-          <h3>Adult Learning Center</h3>
-          <p>GED preparation, ESL classes, computer literacy, and career readiness programs for adults.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-briefcase"></i></div>
-            <span class="resource-card-category">Employment</span>
-          </div>
-          <h3>WorkSource Georgia</h3>
-          <p>Job search assistance, resume help, interview coaching, and connection to local employers.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-            <span><i class="ph ph-clock"></i> Mon-Fri 8am-5pm</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-users"></i></div>
-            <span class="resource-card-category">Youth</span>
-          </div>
-          <h3>Boys & Girls Club of Forsyth</h3>
-          <p>After-school programs, summer camps, and youth development activities for ages 6-18.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-hand-coins"></i></div>
-            <span class="resource-card-category">Financial</span>
-          </div>
-          <h3>LIHEAP Energy Assistance</h3>
-          <p>Help with utility bills for low-income households, including heating and cooling assistance.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
-
-        <a href="#" class="resource-card">
-          <div class="resource-card-header">
-            <div class="resource-card-icon"><i class="ph ph-user"></i></div>
-            <span class="resource-card-category">Seniors</span>
-          </div>
-          <h3>Senior Services Center</h3>
-          <p>Meals on Wheels, transportation assistance, social activities, and wellness programs for seniors.</p>
-          <div class="resource-card-meta">
-            <span><i class="ph ph-map-pin"></i> Cumming, GA</span>
-          </div>
-        </a>
+      <div id="resources-grid" class="cards-grid">
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <i class="ph ph-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i>
+          <p style="margin-top: 1rem; color: #666;">Loading resources from spreadsheet...</p>
+        </div>
       </div>
-
-      <!-- Pagination -->
-      <div class="pagination">
-        <a href="#">&laquo; Previous</a>
-        <span class="active">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">Next &raquo;</a>
-      </div>
+      
+      <style>
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      </style>
 
       <!-- Can't Find CTA -->
       <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: #f8f9fa; border-radius: 1rem;">
@@ -275,5 +165,101 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/webflow-script.js"></script>
+<script src="../js/sheets-loader.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  let allResources = await SheetsLoader.loadResources();
+  
+  const resourcesGrid = document.getElementById('resources-grid');
+  const resourceCount = document.getElementById('resource-count');
+  const searchInput = document.getElementById('resourceSearch');
+  const sortSelect = document.getElementById('sort-select');
+  
+  function renderResources(resources) {
+    if (resources.length === 0) {
+      resourcesGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <p style="color: #666;">No resources found.</p>
+        </div>
+      `;
+      resourceCount.innerHTML = 'Showing <strong>0</strong> resources';
+      return;
+    }
+    
+    resourcesGrid.innerHTML = resources.map(resource => SheetsLoader.renderResourceCard(resource)).join('');
+    resourceCount.innerHTML = `Showing <strong>${resources.length}</strong> resources`;
+  }
+  
+  function sortResources(resources, sortBy) {
+    const sorted = [...resources];
+    if (sortBy === 'az') {
+      sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    } else if (sortBy === 'category') {
+      sorted.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+    }
+    return sorted;
+  }
+  
+  function filterAndRender() {
+    let filtered = allResources;
+    
+    if (searchInput && searchInput.value) {
+      const query = searchInput.value.toLowerCase();
+      filtered = allResources.filter(r => 
+        (r.name && r.name.toLowerCase().includes(query)) ||
+        (r.description && r.description.toLowerCase().includes(query)) ||
+        (r.category && r.category.toLowerCase().includes(query)) ||
+        (r.address && r.address.toLowerCase().includes(query))
+      );
+    }
+    
+    const sortBy = sortSelect ? sortSelect.value : 'az';
+    filtered = sortResources(filtered, sortBy);
+    
+    renderResources(filtered);
+  }
+  
+  if (allResources.length === 0) {
+    resourcesGrid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+        <p style="color: #666;">No resources found. Please check that your Google Sheet has data in the Resources tab.</p>
+      </div>
+    `;
+    resourceCount.innerHTML = 'Showing <strong>0</strong> resources';
+  } else {
+    filterAndRender();
+  }
+  
+  if (searchInput) {
+    searchInput.addEventListener('input', filterAndRender);
+  }
+  
+  if (sortSelect) {
+    sortSelect.addEventListener('change', filterAndRender);
+  }
+  
+  const filterPills = document.querySelectorAll('.filter-pill');
+  filterPills.forEach(pill => {
+    if (pill.getAttribute('href') === '#') {
+      pill.addEventListener('click', function(e) {
+        e.preventDefault();
+        filterPills.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.textContent.trim().toLowerCase();
+        
+        if (category === 'all resources') {
+          filterAndRender();
+        } else {
+          const filtered = allResources.filter(r => 
+            r.category && r.category.toLowerCase().includes(category.replace(/[^a-z]/g, ''))
+          );
+          renderResources(sortResources(filtered, sortSelect ? sortSelect.value : 'az'));
+        }
+      });
+    }
+  });
+});
+</script>
 </body>
 </html>
