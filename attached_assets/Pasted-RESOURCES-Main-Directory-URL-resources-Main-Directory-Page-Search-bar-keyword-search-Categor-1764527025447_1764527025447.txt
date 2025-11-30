@@ -1,0 +1,172 @@
+RESOURCES (Main Directory)
+URL: /resources
+Main Directory Page:
+
+Search bar (keyword search)
+Category filters (dropdown + pills)
+Sort options (A-Z, category, rating)
+Grid of resource cards
+Pagination
+"Can't find what you need?" CTA
+
+Individual Resource Page:
+URL: /resources/[resource-name]
+
+Full resource details
+Contact information
+Hours of operation
+Location with embedded map
+Services offered
+Eligibility requirements
+Related resources
+Reviews/ratings (optional)
+"Report outdated info" button
+
+Category Pages:
+URL: /resources/category/[category-name]
+
+Food Assistance
+Education & Tutoring
+Mental Health Services
+Housing Support
+Healthcare
+Employment & Job Training
+Youth Services
+Senior Services
+Recreation & Community
+
+
+EVENTS
+URL: /events
+Events Calendar Page:
+
+Calendar view (month/list toggle)
+Filter by category
+Search events
+Featured events
+Past events archive
+
+Individual Event Page:
+URL: /events/[event-name]
+
+Event details
+Date, time, location
+Registration/RSVP
+Contact organizer
+Add to calendar
+Share event
+
+
+SUBMIT RESOURCE
+URL: /submit-resource
+
+Form to suggest new resource
+Fields:
+
+Resource name
+Category
+Description
+Contact info
+Hours
+Address
+Website
+Services offered
+Reason for submission
+
+
+Thank you confirmation page
+
+
+ABOUT
+URL: /about
+About the Hub:
+
+Our mission & vision
+How we work
+History/founding story
+Meet the team
+Impact statistics
+Annual reports
+
+How to Use the Hub:
+URL: /about/how-to-use
+
+Video tutorial
+Step-by-step guide
+FAQ section
+Accessibility features
+
+
+GET INVOLVED
+URL: /get-involved
+Ways to Participate:
+
+Volunteer opportunities
+Become a partner organization
+Donate/support
+Share your story
+Spread the word
+
+For Partners:
+URL: /partners
+
+Benefits of partnership
+Partner login portal
+Partner resources
+Update your listing
+Partner directory
+
+
+NEWS & STORIES
+URL: /news
+
+Blog posts
+Success stories
+Community spotlights
+Resource updates
+Policy changes
+Filter by topic
+
+Individual Article Page:
+URL: /news/[article-title]
+
+EMERGENCY RESOURCES
+URL: /emergency
+
+Crisis hotlines (highlighted at top)
+Emergency shelters
+24/7 services
+Mental health crisis support
+Domestic violence resources
+Suicide prevention
+Quick exit button (safety feature)
+
+
+SUPPORT & HELP
+URL: /help
+Help Center:
+
+FAQ
+Contact us form
+Live chat (optional)
+Report a problem
+Request resource update
+Accessibility statement
+
+Contact Page:
+URL: /contact
+
+Contact form
+Email address
+Phone number
+Office location
+Social media links
+
+
+LEGAL PAGES
+Privacy Policy:
+URL: /privacy
+Terms of Use:
+URL: /terms
+Accessibility Statement:
+URL: /accessibility
