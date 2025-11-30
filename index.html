@@ -677,39 +677,8 @@ input[type="file"]:focus-visible {
         <h2>Programs That Make a Difference</h2>
         <p>Discover our most impactful programs designed to support you and your family.</p>
       </div>
-      <div class="resources_grid">
-        <a href="#" class="resource_card">
-          <div class="resource_icon">
-            <i class="ph ph-house-line"></i>
-          </div>
-          <h3>Emergency Housing Support</h3>
-          <p>Immediate assistance for families facing housing insecurity. We connect you with shelters, rental assistance, and long-term housing solutions.</p>
-          <span class="resource_link">Learn More <i class="ph ph-arrow-right"></i></span>
-        </a>
-        <a href="#" class="resource_card">
-          <div class="resource_icon">
-            <i class="ph ph-apple-logo"></i>
-          </div>
-          <h3>Community Food Pantry</h3>
-          <p>Access nutritious food through our network of local food banks and community kitchens. No one in our community should go hungry.</p>
-          <span class="resource_link">Learn More <i class="ph ph-arrow-right"></i></span>
-        </a>
-        <a href="#" class="resource_card">
-          <div class="resource_icon">
-            <i class="ph ph-stethoscope"></i>
-          </div>
-          <h3>Healthcare Navigation</h3>
-          <p>Get connected to affordable healthcare services, prescription assistance programs, and mental health resources in your area.</p>
-          <span class="resource_link">Learn More <i class="ph ph-arrow-right"></i></span>
-        </a>
-        <a href="#" class="resource_card">
-          <div class="resource_icon">
-            <i class="ph ph-student"></i>
-          </div>
-          <h3>Youth Development Programs</h3>
-          <p>Empowering the next generation through tutoring, mentorship, and after-school programs that build skills and confidence.</p>
-          <span class="resource_link">Learn More <i class="ph ph-arrow-right"></i></span>
-        </a>
+      <div class="resources_grid" id="home-resources-grid">
+        <!-- Resources loaded dynamically from CSV -->
       </div>
     </div>
   </div>
@@ -759,37 +728,11 @@ input[type="file"]:focus-visible {
         <h2>Upcoming Events</h2>
         <p>Join us at community events designed to connect, educate, and support.</p>
       </div>
-      <div class="events_grid">
-        <div class="event_card">
-          <div class="event_date">Dec 15, 2025</div>
-          <h3>Winter Resource Fair</h3>
-          <p>Connect with over 50 local service providers offering free resources, screenings, and assistance applications.</p>
-          <div class="event_location">
-            <i class="ph ph-map-pin"></i>
-            Forsyth Community Center
-          </div>
-        </div>
-        <div class="event_card">
-          <div class="event_date">Jan 8, 2026</div>
-          <h3>Financial Literacy Workshop</h3>
-          <p>Learn budgeting basics, credit building strategies, and how to access financial assistance programs.</p>
-          <div class="event_location">
-            <i class="ph ph-map-pin"></i>
-            Central Library, Meeting Room A
-          </div>
-        </div>
-        <div class="event_card">
-          <div class="event_date">Jan 22, 2026</div>
-          <h3>Job Seekers Networking Event</h3>
-          <p>Meet local employers, practice interview skills, and learn about job training opportunities in our area.</p>
-          <div class="event_location">
-            <i class="ph ph-map-pin"></i>
-            Workforce Development Center
-          </div>
-        </div>
+      <div class="events_grid" id="home-events-grid">
+        <!-- Events loaded dynamically from CSV -->
       </div>
       <div style="text-align: center; margin-top: 3rem;">
-        <a href="#" class="btn-white">View All Events</a>
+        <a href="pages/events.html" class="btn-white">View All Events</a>
       </div>
     </div>
   </div>
@@ -929,8 +872,12 @@ input[type="file"]:focus-visible {
 <script src="js/inertiaplugin.min.js"></script>
 <script src="js/scrambletextplugin.min.js"></script>
 <script src="js/draggable.min.js"></script>
+<script src="js/sheets-loader.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", async (event) => {
+  // Load dynamic content from CSV files
+  await loadHomePageContent();
+  
   gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin, ScrambleTextPlugin, SplitText);
   
   let mm = gsap.matchMedia();

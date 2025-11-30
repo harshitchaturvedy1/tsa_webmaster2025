@@ -15,12 +15,13 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes (November 30, 2025)
 
 **Dynamic Data System (CSV Integration):**
-- Events and Resources pages now load content dynamically from CSV files
+- Home page, Events page, and Resources page now load content dynamically from CSV files
 - Data files located in `/data/events.csv` and `/data/resources.csv`
 - JavaScript loader in `/js/sheets-loader.js` fetches and parses CSV data
 - Server provides API endpoints at `/api/sheets/0` (events) and `/api/sheets/1` (resources)
 - CSV parser handles multiline fields and quoted content properly
 - Date filtering normalized to date-only comparisons (events on today's date show as upcoming)
+- Home page displays 4 featured resources and 3 upcoming events dynamically
 
 **Footer Updates:**
 - Removed social media links from all pages across the site

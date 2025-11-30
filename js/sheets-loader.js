@@ -193,12 +193,85 @@ function renderFeaturedEvent(event) {
   `;
 }
 
+function renderHomeEventCard(event) {
+  const { day, month, year } = formatDate(event.date);
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+  const date = new Date(event.date);
+  const fullMonth = isNaN(date.getTime()) ? month : monthNames[date.getMonth()];
+  
+  return `
+    <div class="event_card">
+      <div class="event_date">${fullMonth} ${day}, ${year || new Date().getFullYear()}</div>
+      <h3>${event.title || 'Untitled Event'}</h3>
+      <p>${event.description || ''}</p>
+      <div class="event_location">
+        <i class="ph ph-map-pin"></i>
+        ${event.location || 'TBD'}
+      </div>
+    </div>
+  `;
+}
+
+function renderHomeResourceCard(resource) {
+  const iconClass = getCategoryIcon(resource.category);
+  
+  return `
+    <a href="${resource.website || 'pages/resources.html'}" class="resource_card" ${resource.website ? 'target="_blank" rel="noopener"' : ''}>
+      <div class="resource_icon">
+        <i class="ph ${iconClass}"></i>
+      </div>
+      <h3>${resource.name || 'Resource'}</h3>
+      <p>${resource.description || ''}</p>
+      <span class="resource_link">Learn More <i class="ph ph-arrow-right"></i></span>
+    </a>
+  `;
+}
+
+async function loadHomePageContent() {
+  const [events, resources] = await Promise.all([
+    loadEvents(),
+    loadResources()
+  ]);
+  
+  const eventsGrid = document.getElementById('home-events-grid');
+  if (eventsGrid && events.length > 0) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const upcomingEvents = events
+      .filter(e => {
+        const eventDate = new Date(e.date);
+        eventDate.setHours(0, 0, 0, 0);
+        return eventDate >= today;
+      })
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(0, 3);
+    
+    if (upcomingEvents.length > 0) {
+      eventsGrid.innerHTML = upcomingEvents.map(e => renderHomeEventCard(e)).join('');
+    } else {
+      eventsGrid.innerHTML = events.slice(0, 3).map(e => renderHomeEventCard(e)).join('');
+    }
+  }
+  
+  const resourcesGrid = document.getElementById('home-resources-grid');
+  if (resourcesGrid && resources.length > 0) {
+    resourcesGrid.innerHTML = resources.slice(0, 4).map(r => renderHomeResourceCard(r)).join('');
+  }
+}
+
 window.SheetsLoader = {
   loadEvents,
   loadResources,
   renderEventCard,
   renderResourceCard,
   renderFeaturedEvent,
+  renderHomeEventCard,
+  renderHomeResourceCard,
+  loadHomePageContent,
   formatDate,
   getCategoryIcon
 };
+
+window.loadHomePageContent = loadHomePageContent;
