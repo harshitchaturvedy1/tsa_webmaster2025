@@ -1,16 +1,16 @@
-# GiveWell - Fundraising Website Template
+# Forsyth Bridge - Community Resource Portal
 
 ## Overview
-This is a modern, GSAP-powered fundraising website template designed to inspire action and showcase campaigns. The site features smooth animations, interactive elements, and a clean, responsive design.
+Forsyth Bridge is a modern, GSAP-powered community resource portal designed to connect Forsyth County residents to essential resources, support services, and opportunities. The site features smooth animations, interactive elements, and a clean, responsive design.
 
-**Project Type:** Static HTML/CSS/JavaScript website (Webflow export)  
-**Status:** Fully functional and ready to use  
-**Import Date:** November 30, 2025
+**Project Type:** Static HTML/CSS/JavaScript website  
+**Status:** Fully functional and ready for deployment  
+**Last Updated:** November 30, 2025
 
 ## Project Structure
 ```
 .
-├── index.html              # Main HTML file
+├── index.html              # Main HTML file with all sections
 ├── css/                    # Webflow CSS files
 ├── js/                     # JavaScript libraries (GSAP, jQuery, Webflow)
 ├── images/                 # All images and assets
@@ -23,23 +23,30 @@ This is a modern, GSAP-powered fundraising website template designed to inspire 
 - **Animations:** GSAP (GreenSock Animation Platform)
   - ScrollTrigger plugin for scroll-based animations
   - SplitText plugin for character-by-character text animations
-  - Draggable plugin for interactive elements
-  - InertiaPlugin for smooth dragging physics
-  - ScrambleText plugin for number animations
-- **Framework:** Webflow (exported)
+  - ScrambleText plugin for number counter animations
 - **Icons:** Phosphor Icons
-- **Server:** Python 3.11 SimpleHTTPServer
+- **Server:** Python 3.11 SimpleHTTPServer (development)
 
-## Features
-- Hero section with animated title reveal
-- Scroll-triggered text fade-in animations
-- Pinned scroll-based image expansion effect
-- Interactive tabbed content with auto-rotation
-- Draggable hand icons with physics
-- Parallax marquee scrolling
-- Scrambled number counter animations
-- Fully responsive design
-- Navigation with mobile menu
+## Homepage Sections
+1. **Hero** - Animated "Forsyth Bridge" title with mission statement and CTA buttons
+2. **Quick Categories** - 8 resource category buttons (Housing, Healthcare, Food, Education, Employment, Family Services, Mental Health, Financial Aid)
+3. **Featured Resources** - 4 spotlight resource cards (Emergency Housing, Food Pantry, Healthcare Navigation, Youth Programs)
+4. **Impact Statistics** - Animated counters (15,000+ served, 200+ partners, 95% satisfaction, $2.5M distributed)
+5. **Upcoming Events** - 3 event preview cards with dates and locations
+6. **Testimonials** - 3 success story cards from community members
+7. **Partner Logos** - Grid of 6 partner organization placeholders
+8. **Call to Action** - Contact information and action buttons
+9. **Footer** - Navigation links, social media, and contact details
+
+## Animations
+- Hero title character-by-character reveal animation
+- Resource cards fade-in on scroll
+- Category buttons scale animation on scroll
+- Event cards slide-in animation
+- Testimonial cards fade-up animation
+- Partner logos scale-in animation
+- Statistics number scramble counter animation
+- CTA section fade-in animation
 
 ## Development Setup
 
@@ -53,9 +60,6 @@ The website runs on a Python HTTP server configured to serve static files on por
 
 The server automatically starts via the "Start server" workflow.
 
-### File Serving
-All static assets (HTML, CSS, JS, images) are served directly from the root directory with cache-control headers disabled to ensure fresh content during development.
-
 ## Deployment
 
 ### Deployment Configuration
@@ -63,24 +67,16 @@ All static assets (HTML, CSS, JS, images) are served directly from the root dire
 - **Public Directory:** `.` (root directory)
 - **Files Served:** All HTML, CSS, JS, and image assets
 
-The site is configured for static deployment, which means it will be served as-is without any build process or server-side logic.
+The site is configured for static deployment, serving files directly without server-side processing.
 
-## Key Sections
-1. **Hero** - Animated title with scenic background
-2. **Mission** - Organization mission statement
-3. **Empower** - Tabbed content showcasing different initiatives
-4. **Team** - Team/volunteer recognition
-5. **Vision** - Full-screen pinned scroll animation
-6. **Stats** - Impact statistics with animated numbers
-7. **Footer** - Contact and social links
-
-## Notes
-- The website includes GSAP premium plugins (SplitText, ScrambleText, InertiaPlugin) which may require licensing for commercial use
-- All animations respect user's `prefers-reduced-motion` accessibility setting
-- Images are optimized with AVIF format for modern browsers with JPEG fallbacks
-- The site includes anti-caching headers during development for immediate updates
+## Customization Notes
+- Partner logos section uses placeholders - replace with actual partner logos
+- Contact phone number and email in CTA/footer should be updated with real information
+- Event dates and locations can be updated as needed
+- Resource links currently go to "#" - update with actual resource pages
 
 ## Browser Compatibility
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - AVIF image support recommended
 - JavaScript required for animations and interactivity
+- Respects user's `prefers-reduced-motion` accessibility setting
