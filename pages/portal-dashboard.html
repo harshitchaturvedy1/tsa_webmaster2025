@@ -487,6 +487,7 @@ async function verifyAuth() {
 verifyAuth();
 
 async function logout() {
+  console.log('Logout started');
   const token = localStorage.getItem('authToken');
   
   try {
@@ -506,8 +507,9 @@ async function logout() {
   localStorage.removeItem('userData');
   sessionStorage.clear();
   
+  console.log('Auth data cleared, redirecting to home');
   // Redirect to home
-  window.location.href = '/';
+  window.location.replace(window.location.origin + '/');
 }
 </script>
 <script src="../js/auth-navbar.js"></script>
