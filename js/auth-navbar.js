@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const authLink = document.getElementById('auth-link');
   if (!authLink) return;
   
+  // Detect if we're on a page in /pages directory or on home
+  const isInPages = window.location.pathname.includes('/pages/');
+  const loginUrl = isInPages ? 'portal-login.html' : 'pages/portal-login.html';
+  const dashboardUrl = isInPages ? 'portal-dashboard.html' : 'pages/portal-dashboard.html';
+  
   const token = localStorage.getItem('authToken');
   const userData = localStorage.getItem('userData');
   
@@ -10,14 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const user = JSON.parse(userData);
       const username = user.username || 'Partner';
       authLink.textContent = `Welcome ${username}`;
-      authLink.href = 'pages/portal-dashboard.html';
-      // Make it easier to identify as logged in
-      authLink.style.opacity = '1';
+      authLink.href = dashboardUrl;
     } catch (e) {
-      // Fall back to default
+      authLink.textContent = 'Login';
+      authLink.href = loginUrl;
     }
   } else {
     authLink.textContent = 'Login';
-    authLink.href = 'pages/portal-login.html';
+    authLink.href = loginUrl;
   }
 });
