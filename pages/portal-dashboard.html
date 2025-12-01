@@ -508,8 +508,8 @@ async function logout() {
   sessionStorage.clear();
   
   console.log('Auth data cleared, redirecting to home');
-  // Redirect to home
-  window.location.replace(window.location.origin + '/');
+  // Redirect to home page
+  window.location.href = '../index.html';
 }
 </script>
 <script src="../js/auth-navbar.js"></script>
