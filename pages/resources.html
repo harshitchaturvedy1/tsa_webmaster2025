@@ -75,12 +75,12 @@
 
       <!-- Sort Options -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <p style="color: #666;">Showing <strong>24</strong> resources</p>
-        <select style="padding: 0.5rem 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
-          <option>Sort by: A-Z</option>
-          <option>Sort by: Category</option>
-          <option>Sort by: Most Popular</option>
-          <option>Sort by: Recently Added</option>
+        <p style="color: #666;">Showing <strong id="resourceCount">24</strong> resources</p>
+        <select id="sortSelect" style="padding: 0.5rem 1rem; border: 2px solid #e0e0e0; border-radius: 8px;">
+          <option value="a-z">Sort by: A-Z</option>
+          <option value="category">Sort by: Category</option>
+          <option value="popular">Sort by: Most Popular</option>
+          <option value="recent">Sort by: Recently Added</option>
         </select>
       </div>
 
@@ -254,7 +254,50 @@
 document.addEventListener('DOMContentLoaded', function() {
   const filterPills = document.querySelectorAll('.filter-pill');
   const resourceCards = document.querySelectorAll('.resource-card[data-category]');
+  const sortSelect = document.getElementById('sortSelect');
+  const resourceGrid = document.querySelector('.cards-grid');
+  const resourceCountEl = document.getElementById('resourceCount');
   
+  // Sorting function
+  function sortCards(sortBy) {
+    const cardsArray = Array.from(resourceCards).filter(card => card.style.display !== 'none');
+    
+    cardsArray.sort((a, b) => {
+      switch(sortBy) {
+        case 'a-z':
+          const titleA = a.querySelector('h3').textContent.toLowerCase();
+          const titleB = b.querySelector('h3').textContent.toLowerCase();
+          return titleA.localeCompare(titleB);
+        
+        case 'category':
+          const catA = a.querySelector('.resource-card-category').textContent.toLowerCase();
+          const catB = b.querySelector('.resource-card-category').textContent.toLowerCase();
+          return catA.localeCompare(catB);
+        
+        case 'popular':
+          // Simulate by position (first to last)
+          return Array.from(resourceCards).indexOf(a) - Array.from(resourceCards).indexOf(b);
+        
+        case 'recent':
+          // Simulate reverse position (last to first)
+          return Array.from(resourceCards).indexOf(b) - Array.from(resourceCards).indexOf(a);
+        
+        default:
+          return 0;
+      }
+    });
+    
+    // Remove and re-append sorted cards
+    cardsArray.forEach(card => resourceGrid.appendChild(card));
+  }
+  
+  // Update resource count
+  function updateResourceCount() {
+    const visibleCards = Array.from(resourceCards).filter(card => card.style.display !== 'none');
+    resourceCountEl.textContent = visibleCards.length;
+  }
+  
+  // Filter pill functionality
   filterPills.forEach(pill => {
     pill.addEventListener('click', function(e) {
       e.preventDefault();
@@ -281,7 +324,16 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       });
+      
+      // Re-apply current sort to filtered results
+      sortCards(sortSelect.value);
+      updateResourceCount();
     });
+  });
+  
+  // Sort dropdown functionality
+  sortSelect.addEventListener('change', function() {
+    sortCards(this.value);
   });
 });
 </script>
