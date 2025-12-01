@@ -250,31 +250,77 @@
 <script src="../js/webflow-script.js"></script>
 <script src="../js/cookie-consent.js"></script>
 <script>
-document.getElementById('login-form').addEventListener('submit', function(e) {
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? '' 
+  : '';
+
+if (localStorage.getItem('authToken')) {
+  fetch(API_BASE + '/api/verify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.valid) {
+      window.location.href = 'portal-dashboard.html';
+    }
+  })
+  .catch(() => {});
+}
+
+document.getElementById('login-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
   const errorMessage = document.getElementById('error-message');
+  const loginBtn = document.querySelector('.login-btn');
   
-  // Demo credentials check
-  if (username === 'admin' && password === 'password123') {
-    // Simulate successful login
-    sessionStorage.setItem('portalLoggedIn', 'true');
-    sessionStorage.setItem('portalUser', 'admin');
-    window.location.href = 'portal-dashboard.html';
-  } else {
-    // Show error message
+  loginBtn.disabled = true;
+  loginBtn.textContent = 'Signing in...';
+  errorMessage.style.display = 'none';
+  
+  try {
+    const response = await fetch(API_BASE + '/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    
+    const data = await response.json();
+    
+    if (response.ok && data.success) {
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userData', JSON.stringify(data.user));
+      window.location.href = 'portal-dashboard.html';
+    } else {
+      errorMessage.textContent = data.error || 'Invalid username or password. Please try again.';
+      errorMessage.style.display = 'block';
+      shakeForm();
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    errorMessage.textContent = 'Connection error. Please try again.';
     errorMessage.style.display = 'block';
-    // Shake the form
-    document.querySelector('.login-container').style.animation = 'shake 0.5s';
-    setTimeout(() => {
-      document.querySelector('.login-container').style.animation = '';
-    }, 500);
+    shakeForm();
+  } finally {
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign In';
   }
 });
 
-// Add shake animation
+function shakeForm() {
+  document.querySelector('.login-container').style.animation = 'shake 0.5s';
+  setTimeout(() => {
+    document.querySelector('.login-container').style.animation = '';
+  }, 500);
+}
+
 const style = document.createElement('style');
 style.textContent = `
   @keyframes shake {

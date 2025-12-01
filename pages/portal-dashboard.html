@@ -471,14 +471,74 @@
 <script src="../js/webflow-script.js"></script>
 <script src="../js/cookie-consent.js"></script>
 <script>
-// Check if user is logged in
-if (sessionStorage.getItem('portalLoggedIn') !== 'true') {
-  window.location.href = 'portal-login.html';
+const API_BASE = '';
+
+async function verifyAuth() {
+  const token = localStorage.getItem('authToken');
+  
+  if (!token) {
+    window.location.href = 'portal-login.html';
+    return;
+  }
+  
+  try {
+    const response = await fetch(API_BASE + '/api/verify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
+    
+    const data = await response.json();
+    
+    if (!data.valid) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userData');
+      window.location.href = 'portal-login.html';
+      return;
+    }
+    
+    const userData = data.user;
+    const welcomeEl = document.querySelector('.welcome-text strong');
+    if (welcomeEl && userData.organization) {
+      welcomeEl.textContent = userData.organization;
+    }
+    
+  } catch (error) {
+    console.error('Auth verification error:', error);
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      try {
+        const user = JSON.parse(userData);
+        const welcomeEl = document.querySelector('.welcome-text strong');
+        if (welcomeEl && user.organization) {
+          welcomeEl.textContent = user.organization;
+        }
+      } catch (e) {}
+    }
+  }
 }
 
-function logout() {
-  sessionStorage.removeItem('portalLoggedIn');
-  sessionStorage.removeItem('portalUser');
+verifyAuth();
+
+async function logout() {
+  const token = localStorage.getItem('authToken');
+  
+  try {
+    await fetch(API_BASE + '/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+  
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('userData');
   window.location.href = 'portal-login.html';
 }
 </script>
