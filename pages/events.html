@@ -85,29 +85,119 @@
       </div>
 
       <!-- Featured Event -->
-      <div id="featured-event" style="background: linear-gradient(135deg, #e85d3b 0%, #d44d2b 100%); border-radius: 1rem; padding: 3rem; color: white; margin-bottom: 3rem;">
-        <div style="text-align: center; padding: 2rem;">
-          <i class="ph ph-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i>
-          <p style="margin-top: 1rem;">Loading featured event...</p>
+      <div style="background: linear-gradient(135deg, #e85d3b 0%, #d44d2b 100%); border-radius: 1rem; padding: 3rem; color: white; margin-bottom: 3rem;">
+        <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+          <div style="text-align: center; min-width: 100px;">
+            <div style="font-size: 3rem; font-weight: 700; line-height: 1;">15</div>
+            <div style="text-transform: uppercase; letter-spacing: 1px;">Dec 2025</div>
+          </div>
+          <div style="flex: 1;">
+            <span style="background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem;">Featured Event</span>
+            <h2 style="font-size: 2rem; margin: 0.75rem 0;">Winter Resource Fair</h2>
+            <p style="opacity: 0.9; margin-bottom: 1rem;">Connect with over 50 local service providers offering free resources, health screenings, and assistance applications. Free food, activities for kids, and door prizes!</p>
+            <div style="display: flex; gap: 2rem; opacity: 0.9; flex-wrap: wrap;">
+              <span><i class="ph ph-clock"></i> 10:00 AM - 3:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Forsyth Community Center</span>
+            </div>
+          </div>
+          <a href="#" class="btn-white" style="background: white; color: #e85d3b;">Register Now</a>
         </div>
       </div>
 
       <!-- Upcoming Events -->
       <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Upcoming Events</h2>
       
-      <div id="events-grid" class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
-        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-          <i class="ph ph-spinner" style="font-size: 2rem; animation: spin 1s linear infinite;"></i>
-          <p style="margin-top: 1rem; color: #666;">Loading events from spreadsheet...</p>
-        </div>
+      <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">08</div>
+            <div class="month">Jan</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Financial Literacy Workshop</h3>
+            <p>Learn budgeting basics, credit building strategies, and how to access financial assistance programs.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 6:00 PM - 8:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Central Library, Meeting Room A</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">15</div>
+            <div class="month">Jan</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Job Seekers Networking</h3>
+            <p>Meet local employers, practice interview skills, and learn about job training opportunities.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 9:00 AM - 12:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Workforce Development Center</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">22</div>
+            <div class="month">Jan</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Parenting Support Group</h3>
+            <p>Connect with other parents, share experiences, and learn positive parenting strategies.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 7:00 PM - 8:30 PM</span>
+              <span><i class="ph ph-map-pin"></i> Family Resource Center</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">29</div>
+            <div class="month">Jan</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Healthcare Navigation</h3>
+            <p>Get help understanding insurance options, finding affordable care, and applying for assistance.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 2:00 PM - 4:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Community Health Center</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">05</div>
+            <div class="month">Feb</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Senior Tech Training</h3>
+            <p>Learn to use smartphones, tablets, and computers for staying connected and accessing services.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 10:00 AM - 12:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Senior Services Center</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="event-card">
+          <div class="event-card-date">
+            <div class="day">12</div>
+            <div class="month">Feb</div>
+          </div>
+          <div class="event-card-content">
+            <h3>Mental Health First Aid</h3>
+            <p>Free certification training to help you recognize and respond to mental health challenges.</p>
+            <div class="event-card-info">
+              <span><i class="ph ph-clock"></i> 9:00 AM - 5:00 PM</span>
+              <span><i class="ph ph-map-pin"></i> Avita Community Partners</span>
+            </div>
+          </div>
+        </a>
       </div>
-      
-      <style>
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      </style>
 
       <!-- Past Events -->
       <div style="margin-top: 4rem;">
@@ -158,79 +248,5 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/webflow-script.js"></script>
-<script src="../js/sheets-loader.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-  const events = await SheetsLoader.loadEvents();
-  
-  const featuredContainer = document.getElementById('featured-event');
-  const eventsGrid = document.getElementById('events-grid');
-  
-  if (events.length === 0) {
-    featuredContainer.innerHTML = `
-      <div style="text-align: center; padding: 2rem;">
-        <p>No events found. Please check that your Google Sheet has data in the Events tab.</p>
-      </div>
-    `;
-    eventsGrid.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-        <p style="color: #666;">No upcoming events at this time.</p>
-      </div>
-    `;
-    return;
-  }
-  
-  const sortedEvents = events.sort((a, b) => new Date(a.date) - new Date(b.date));
-  
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  
-  const futureEvents = sortedEvents.filter(e => {
-    const eventDate = new Date(e.date);
-    eventDate.setHours(0, 0, 0, 0);
-    return eventDate >= today;
-  });
-  
-  const eventsToShow = futureEvents.length > 0 ? futureEvents : sortedEvents;
-  
-  if (eventsToShow.length > 0) {
-    featuredContainer.innerHTML = SheetsLoader.renderFeaturedEvent(eventsToShow[0]);
-  }
-  
-  const remainingEvents = eventsToShow.slice(1);
-  if (remainingEvents.length > 0) {
-    eventsGrid.innerHTML = remainingEvents.map(event => SheetsLoader.renderEventCard(event)).join('');
-  } else {
-    eventsGrid.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-        <p style="color: #666;">No additional upcoming events at this time.</p>
-      </div>
-    `;
-  }
-  
-  const searchInput = document.querySelector('input[placeholder="Search events..."]');
-  if (searchInput) {
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase();
-      const filtered = eventsToShow.filter(e => 
-        (e.title && e.title.toLowerCase().includes(query)) ||
-        (e.description && e.description.toLowerCase().includes(query)) ||
-        (e.location && e.location.toLowerCase().includes(query))
-      );
-      
-      if (filtered.length > 0) {
-        featuredContainer.innerHTML = SheetsLoader.renderFeaturedEvent(filtered[0]);
-        const remaining = filtered.slice(1);
-        eventsGrid.innerHTML = remaining.length > 0 
-          ? remaining.map(event => SheetsLoader.renderEventCard(event)).join('')
-          : '<div style="grid-column: 1 / -1; text-align: center; padding: 3rem;"><p style="color: #666;">No more matching events.</p></div>';
-      } else {
-        featuredContainer.innerHTML = '<div style="text-align: center; padding: 2rem;"><p>No events match your search.</p></div>';
-        eventsGrid.innerHTML = '';
-      }
-    });
-  }
-});
-</script>
 </body>
 </html>

@@ -14,15 +14,6 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (November 30, 2025)
 
-**Dynamic Data System (CSV Integration):**
-- Home page, Events page, and Resources page now load content dynamically from CSV files
-- Data files located in `/data/events.csv` and `/data/resources.csv`
-- JavaScript loader in `/js/sheets-loader.js` fetches and parses CSV data
-- Server provides API endpoints at `/api/sheets/0` (events) and `/api/sheets/1` (resources)
-- CSV parser handles multiline fields and quoted content properly
-- Date filtering normalized to date-only comparisons (events on today's date show as upcoming)
-- Home page displays 4 featured resources and 3 upcoming events dynamically
-
 **Footer Updates:**
 - Removed social media links from all pages across the site
 - Implemented consistent 2-column footer structure (Resources / Support) across all pages
@@ -36,7 +27,6 @@ Preferred communication style: Simple, everyday language.
 **Design Decisions:**
 - Emergency crisis hotlines were intentionally kept as they are essential resources for people in crisis
 - Footer simplified to focus on key navigation paths rather than comprehensive site map
-- Local CSV files chosen over Google Sheets due to CORS restrictions in browser environments
 
 ## System Architecture
 
@@ -117,25 +107,10 @@ Preferred communication style: Simple, everyday language.
 ### Development Server
 
 **Python HTTP Server**
-- Python 3.11 HTTP server for local development
+- Simple Python 3.11 HTTP server for local development
 - Serves on port 5000
 - Custom handler disables caching for development workflow
-- Provides API endpoints for CSV data:
-  - `/api/sheets/0` - Returns events from `data/events.csv`
-  - `/api/sheets/1` - Returns resources from `data/resources.csv`
 - No build process required - direct file serving
-
-### Data System
-
-**CSV-Based Dynamic Content**
-- Events and resources load dynamically from CSV files in `/data/`
-- JavaScript loader (`/js/sheets-loader.js`) handles:
-  - Fetching data from server API
-  - Parsing CSV with proper quote/multiline handling
-  - Rendering event cards and resource cards
-  - Search and filter functionality
-- To update content: Edit the CSV files directly
-- CSV format supports multiline descriptions using quoted fields
 
 ## External Dependencies
 
@@ -174,13 +149,15 @@ Preferred communication style: Simple, everyday language.
 - OG/social media images
 - Content images for resources, events, and pages
 
-### No Database
-- No traditional database - content managed via CSV files
+### No Backend/Database
+- No server-side processing or database
+- All content is static HTML
 - Forms would require third-party integration (not currently implemented)
 - No authentication or user accounts
+- No API endpoints (pure static serving)
 
 ### Future Integration Considerations
 - Form submissions would need services like Formspree, Netlify Forms, or similar
-- Content could be migrated to a full CMS or database if needed
+- Resource data could be migrated to a CMS or database for dynamic updates
 - Search functionality currently client-side; could be enhanced with search services
 - Event calendar could integrate with Google Calendar API or similar
