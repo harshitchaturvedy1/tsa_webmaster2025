@@ -909,3 +909,18 @@
     right: 20px;
   }
 }
+
+/* Partner Portal Navigation Highlight */
+.navbar-highlight {
+  background: linear-gradient(135deg, #e85d3b 0%, #d44d2b 100%) !important;
+  color: white !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-highlight:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(232, 93, 59, 0.3);
+}
