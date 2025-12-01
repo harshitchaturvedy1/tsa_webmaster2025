@@ -68,15 +68,10 @@
       <!-- Category Filters -->
       <div class="filter-section">
         <div class="filter-pills">
-          <a href="#" class="filter-pill active">All Resources</a>
-          <a href="resources/category/food.html" class="filter-pill"><i class="ph ph-bowl-food"></i> Food Assistance</a>
-          <a href="resources/category/education.html" class="filter-pill"><i class="ph ph-graduation-cap"></i> Education</a>
-          <a href="resources/category/mental-health.html" class="filter-pill"><i class="ph ph-heart"></i> Mental Health</a>
-          <a href="resources/category/housing.html" class="filter-pill"><i class="ph ph-house"></i> Housing</a>
-          <a href="resources/category/healthcare.html" class="filter-pill"><i class="ph ph-first-aid-kit"></i> Healthcare</a>
-          <a href="resources/category/employment.html" class="filter-pill"><i class="ph ph-briefcase"></i> Employment</a>
-          <a href="resources/category/youth.html" class="filter-pill"><i class="ph ph-users"></i> Youth Services</a>
-          <a href="resources/category/seniors.html" class="filter-pill"><i class="ph ph-user"></i> Senior Services</a>
+          <a href="#" class="filter-pill active" data-filter="all">All Resources</a>
+          <a href="#" class="filter-pill" data-filter="food"><i class="ph ph-bowl-food"></i> Food Assistance</a>
+          <a href="#" class="filter-pill" data-filter="employment"><i class="ph ph-briefcase"></i> Employment</a>
+          <a href="#" class="filter-pill" data-filter="community"><i class="ph ph-heart"></i> Support Services</a>
         </div>
       </div>
 
@@ -93,7 +88,7 @@
 
       <!-- Resources Grid -->
       <div class="cards-grid">
-        <a href="https://www.theplacega.org/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://www.theplacega.org/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="food" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-house-line"></i></div>
             <span class="resource-card-category">Multi-Service</span>
@@ -106,7 +101,7 @@
           </div>
         </a>
 
-        <a href="https://www.gamountainfoodbank.org/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://www.gamountainfoodbank.org/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="food" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-bowl-food"></i></div>
             <span class="resource-card-category">Food Assistance</span>
@@ -119,7 +114,7 @@
           </div>
         </a>
 
-        <a href="https://www.fftpinc.org/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://www.fftpinc.org/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="food" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-gift"></i></div>
             <span class="resource-card-category">Food Assistance</span>
@@ -132,7 +127,7 @@
           </div>
         </a>
 
-        <a href="https://onestopworkgamtns.org/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://onestopworkgamtns.org/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="employment" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-briefcase"></i></div>
             <span class="resource-card-category">Employment</span>
@@ -145,7 +140,7 @@
           </div>
         </a>
 
-        <a href="https://dol.georgia.gov/learn-about-education-and-training" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://dol.georgia.gov/learn-about-education-and-training" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="employment" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-graduation-cap"></i></div>
             <span class="resource-card-category">Training & Education</span>
@@ -158,7 +153,7 @@
           </div>
         </a>
 
-        <a href="https://www.unitedwayforsyth.com/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://www.unitedwayforsyth.com/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="community" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-heart"></i></div>
             <span class="resource-card-category">Community Connection</span>
@@ -171,7 +166,7 @@
           </div>
         </a>
 
-        <a href="https://georgia.org/competitive-advantages/workforce-education" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://georgia.org/competitive-advantages/workforce-education" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="employment" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-students"></i></div>
             <span class="resource-card-category">Workforce Development</span>
@@ -184,7 +179,7 @@
           </div>
         </a>
 
-        <a href="https://www.gamountainfoodbank.org/how-we-feed/feeding-partners/find-an-agency-near-you/forsyth-county/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://www.gamountainfoodbank.org/how-we-feed/feeding-partners/find-an-agency-near-you/forsyth-county/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="food" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-location"></i></div>
             <span class="resource-card-category">Resource Finder</span>
@@ -197,7 +192,7 @@
           </div>
         </a>
 
-        <a href="https://dol.georgia.gov/" target="_blank" rel="noopener noreferrer" class="resource-card" style="text-decoration: none; color: inherit;">
+        <a href="https://dol.georgia.gov/" target="_blank" rel="noopener noreferrer" class="resource-card" data-category="employment" style="text-decoration: none; color: inherit;">
           <div class="resource-card-header">
             <div class="resource-card-icon"><i class="ph ph-briefcase"></i></div>
             <span class="resource-card-category">Job Search</span>
@@ -265,5 +260,40 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/webflow-script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const resourceCards = document.querySelectorAll('.resource-card[data-category]');
+  
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all pills
+      filterPills.forEach(p => p.classList.remove('active'));
+      
+      // Add active class to clicked pill
+      this.classList.add('active');
+      
+      // Get the filter value
+      const filterValue = this.getAttribute('data-filter');
+      
+      // Show/hide resources based on filter
+      resourceCards.forEach(card => {
+        if (filterValue === 'all') {
+          card.style.display = '';
+        } else {
+          const cardCategory = card.getAttribute('data-category');
+          if (cardCategory === filterValue) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
