@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Partner Dashboard | Forsyth Bridge</title>
+<meta content="Manage your organization on Forsyth Bridge." name="description"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="../css/tsa-webmaster-64beab.webflow.shared.56492c9b5.css" rel="stylesheet" type="text/css"/>
+<link href="../css/shared.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link href="../images/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<style>
+.demo-banner {
+  background: linear-gradient(135deg, #fef3cd 0%, #fff8e1 100%);
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.demo-banner i {
+  color: #ff9800;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.demo-banner-content h4 {
+  color: #856404;
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+}
+.demo-banner-content p {
+  color: #856404;
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.welcome-text {
+  color: #666;
+}
+.logout-btn {
+  padding: 0.5rem 1.25rem;
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.logout-btn:hover {
+  background: #e9ecef;
+  color: #333;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+.dashboard-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.dashboard-card h3 i {
+  color: #e85d3b;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+.stat-card .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e85d3b;
+}
+.stat-card .stat-label {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+.info-row:last-child {
+  border-bottom: none;
+}
+.info-label {
+  color: #666;
+  font-weight: 500;
+}
+.info-value {
+  color: #333;
+}
+.service-tag {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin: 0.25rem;
+}
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+.event-item:last-child {
+  margin-bottom: 0;
+}
+.event-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+}
+.event-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+.event-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.event-status.published {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.event-status.draft {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.action-btn {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #e85d3b 0%, #d44d2b 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+.action-btn.secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.action-btn.secondary:hover {
+  background: #e9ecef;
+}
+.disabled-notice {
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+.disabled-notice i {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #bbb;
+}
+@media (max-width: 768px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- Navigation -->
+<div data-animation="default" class="navbar_component w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium" role="banner" data-duration="400">
+  <div class="navbar_container">
+    <a href="../index.html" class="navbar_logo-link w-nav-brand">
+      <div class="navbar_logo" style="font-size: 1.4rem;">Forsyth Bridge</div>
+    </a>
+    <nav role="navigation" class="navbar_menu is-page-height-tablet w-nav-menu">
+      <div class="navbar_menu-links">
+        <a href="../index.html" class="navbar_link w-nav-link">Home</a>
+        <a href="resources.html" class="navbar_link w-nav-link">Resources</a>
+        <a href="events.html" class="navbar_link w-nav-link">Events</a>
+        <a href="about.html" class="navbar_link w-nav-link">About</a>
+        <a href="get-involved.html" class="navbar_link w-nav-link">Get Involved</a>
+        <a href="emergency.html" class="navbar_link w-nav-link" style="color: #dc3545;">Emergency</a>
+      </div>
+      <div class="navbar_menu-buttons">
+        <a data-wf--button--variant="full-red" href="contact.html" class="btn w-inline-block">
+          <div>Get Help</div>
+        </a>
+      </div>
+    </nav>
+    <div class="navbar_menu-button w-nav-button">
+      <div class="menu-icon1">
+        <div class="menu-icon1_line-top"></div>
+        <div class="menu-icon1_line-middle"><div class="menu-icon1_line-middle-inner"></div></div>
+        <div class="menu-icon1_line-bottom"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Section -->
+<section style="padding: 3rem 0; min-height: calc(100vh - 200px); background: #f8f9fa;">
+  <div class="padding-global">
+    <div class="container-large">
+      
+      <!-- Demo Banner -->
+      <div class="demo-banner">
+        <i class="ph ph-info"></i>
+        <div class="demo-banner-content">
+          <h4>Demo Mode - Partner Dashboard Prototype</h4>
+          <p>This dashboard demonstrates the planned partner management interface. All data shown is sample data. Full functionality including real-time editing, database integration, and analytics will be implemented in future updates.</p>
+        </div>
+      </div>
+      
+      <!-- Dashboard Header -->
+      <div class="dashboard-header">
+        <div>
+          <h1><i class="ph ph-squares-four" style="color: #e85d3b;"></i> Partner Dashboard</h1>
+          <p class="welcome-text">Welcome back, <strong>Community Health Center</strong></p>
+        </div>
+        <button class="logout-btn" onclick="logout()"><i class="ph ph-sign-out"></i> Sign Out</button>
+      </div>
+      
+      <!-- Stats -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">1,247</div>
+          <div class="stat-label">Profile Views</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">342</div>
+          <div class="stat-label">Referral Clicks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">89</div>
+          <div class="stat-label">Event RSVPs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4.8</div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+      
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- Organization Info -->
+        <div class="dashboard-card">
+          <h3><i class="ph ph-buildings"></i> Organization Info</h3>
+          <div class="info-row">
+            <span class="info-label">Name</span>
+            <span class="info-value">Community Health Center</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Category</span>
+            <span class="info-value">Healthcare</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Phone</span>
+            <span class="info-value">(770) 555-0123</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email</span>
+            <span class="info-value">info@chc-forsyth.org</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Address</span>
+            <span class="info-value">123 Health Way, Cumming, GA</span>
+          </div>
+          <div class="disabled-notice">
+            <i class="ph ph-pencil-simple-slash"></i>
+            Editing disabled in demo mode
+          </div>
+        </div>
+        
+        <!-- Services -->
+        <div class="dashboard-card">
+          <h3><i class="ph ph-first-aid-kit"></i> Services Offered</h3>
+          <div style="margin-bottom: 1rem;">
+            <span class="service-tag">Primary Care</span>
+            <span class="service-tag">Pediatrics</span>
+            <span class="service-tag">Mental Health</span>
+            <span class="service-tag">Dental Care</span>
+            <span class="service-tag">Vaccinations</span>
+            <span class="service-tag">Health Screenings</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Hours</span>
+            <span class="info-value">Mon-Fri: 8am-6pm</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Accepts</span>
+            <span class="info-value">Medicaid, Medicare, Sliding Scale</span>
+          </div>
+          <div class="disabled-notice">
+            <i class="ph ph-pencil-simple-slash"></i>
+            Editing disabled in demo mode
+          </div>
+        </div>
+        
+        <!-- Events -->
+        <div class="dashboard-card" style="grid-column: span 2;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="margin-bottom: 0;"><i class="ph ph-calendar"></i> Your Events</h3>
+            <button class="action-btn" disabled style="opacity: 0.6; cursor: not-allowed;">+ Add Event</button>
+          </div>
+          
+          <div class="event-item">
+            <div class="event-info">
+              <h4>Free Health Screening Day</h4>
+              <p><i class="ph ph-calendar-blank"></i> December 15, 2025 | <i class="ph ph-map-pin"></i> Main Office</p>
+            </div>
+            <span class="event-status published">Published</span>
+          </div>
+          
+          <div class="event-item">
+            <div class="event-info">
+              <h4>Diabetes Prevention Workshop</h4>
+              <p><i class="ph ph-calendar-blank"></i> January 8, 2026 | <i class="ph ph-map-pin"></i> Community Room</p>
+            </div>
+            <span class="event-status published">Published</span>
+          </div>
+          
+          <div class="event-item">
+            <div class="event-info">
+              <h4>Mental Health Awareness Seminar</h4>
+              <p><i class="ph ph-calendar-blank"></i> January 22, 2026 | <i class="ph ph-map-pin"></i> Denmark Library</p>
+            </div>
+            <span class="event-status draft">Draft</span>
+          </div>
+          
+          <div class="disabled-notice">
+            <i class="ph ph-pencil-simple-slash"></i>
+            Event management disabled in demo mode
+          </div>
+        </div>
+        
+        <!-- Analytics Preview -->
+        <div class="dashboard-card" style="grid-column: span 2;">
+          <h3><i class="ph ph-chart-line-up"></i> Analytics Overview</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+            <div>
+              <h4 style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Top Referral Sources</h4>
+              <div class="info-row">
+                <span class="info-label">Forsyth Bridge Homepage</span>
+                <span class="info-value">156 clicks</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Healthcare Category</span>
+                <span class="info-value">98 clicks</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Direct Search</span>
+                <span class="info-value">88 clicks</span>
+              </div>
+            </div>
+            <div>
+              <h4 style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">This Month</h4>
+              <div class="info-row">
+                <span class="info-label">Profile Views</span>
+                <span class="info-value">+23% <span style="color: #4caf50;">↑</span></span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Contact Clicks</span>
+                <span class="info-value">+15% <span style="color: #4caf50;">↑</span></span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Event Interest</span>
+                <span class="info-value">+42% <span style="color: #4caf50;">↑</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="disabled-notice">
+            <i class="ph ph-chart-bar"></i>
+            Full analytics reports coming in future update
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="simple-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3 class="footer-title">Forsyth Bridge</h3>
+        <p class="footer-description">Connecting communities to essential resources and support services.</p>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-subtitle">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Browse All</a></li>
+          <li><a href="emergency.html">Emergency</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-subtitle">Support</h4>
+        <ul class="footer-links">
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="sources.html">Works Cited</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Forsyth Bridge. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/webflow-script.js"></script>
+<script src="../js/cookie-consent.js"></script>
+<script>
+// Check if user is logged in
+if (sessionStorage.getItem('portalLoggedIn') !== 'true') {
+  window.location.href = 'portal-login.html';
+}
+
+function logout() {
+  sessionStorage.removeItem('portalLoggedIn');
+  sessionStorage.removeItem('portalUser');
+  window.location.href = 'portal-login.html';
+}
+</script>
+</body>
+</html>
