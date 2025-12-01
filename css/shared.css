@@ -734,6 +734,40 @@
   border-color: #e85d3b;
 }
 
+/* Footer Improvements */
+.footer_component {
+  background-color: #1a1a2e !important;
+  color: white !important;
+}
+
+.footer_logo-link,
+.footer_logo,
+.footer_text,
+.footer_link,
+.footer_link-list-title,
+.footer_credit-text,
+.footer_legal-link {
+  color: white !important;
+}
+
+.footer_link,
+.footer_legal-link {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer_link:hover,
+.footer_legal-link:hover {
+  color: #e85d3b !important;
+  text-decoration: underline;
+}
+
+.footer_link-list-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #e85d3b !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .page-header {
