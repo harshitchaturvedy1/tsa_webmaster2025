@@ -506,10 +506,8 @@ async function logout() {
   localStorage.removeItem('userData');
   sessionStorage.clear();
   
-  // Redirect to login
-  setTimeout(() => {
-    window.location.href = 'portal-login.html';
-  }, 100);
+  // Redirect to home
+  window.location.href = '../index.html';
 }
 </script>
 <script src="../js/auth-navbar.js"></script>
