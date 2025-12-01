@@ -1,0 +1,17 @@
+{
+  "name": "forsyth-bridge",
+  "version": "1.0.0",
+  "description": "Forsyth Bridge - Community Resource Portal",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build required'",
+    "start": "python server.py"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
