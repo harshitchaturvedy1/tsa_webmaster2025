@@ -597,7 +597,7 @@ input[type="file"]:focus-visible {
         <a href="pages/about.html" class="navbar_link w-nav-link">About</a>
         <a href="pages/get-involved.html" class="navbar_link w-nav-link">Get Involved</a>
         <a href="pages/emergency.html" class="navbar_link w-nav-link" style="color: #dc3545;">Emergency</a>
-        <a href="pages/portal-login.html" class="navbar_link w-nav-link navbar-highlight">Partner Portal</a>
+        <a href="pages/portal-login.html" id="auth-link" class="navbar_link w-nav-link navbar-highlight">Partner Portal</a>
       </div>
     </nav>
     <div class="navbar_menu-button w-nav-button">
@@ -1133,6 +1133,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 </script>
+<script src="js/auth-navbar.js"></script>
 <script src="js/cookie-consent.js"></script>
 </body>
 </html>
