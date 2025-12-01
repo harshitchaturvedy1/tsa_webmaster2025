@@ -75,12 +75,12 @@
       <!-- Filter Pills -->
       <div class="filter-section">
         <div class="filter-pills">
-          <a href="#" class="filter-pill active">All Events</a>
-          <a href="#" class="filter-pill">Workshops</a>
-          <a href="#" class="filter-pill">Resource Fairs</a>
-          <a href="#" class="filter-pill">Support Groups</a>
-          <a href="#" class="filter-pill">Community</a>
-          <a href="#" class="filter-pill">Training</a>
+          <a href="#" class="filter-pill active" data-filter="all">All Events</a>
+          <a href="#" class="filter-pill" data-filter="workshops">Workshops</a>
+          <a href="#" class="filter-pill" data-filter="resource-fairs">Resource Fairs</a>
+          <a href="#" class="filter-pill" data-filter="support-groups">Support Groups</a>
+          <a href="#" class="filter-pill" data-filter="community">Community</a>
+          <a href="#" class="filter-pill" data-filter="training">Training</a>
         </div>
       </div>
 
@@ -108,7 +108,7 @@
       <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Upcoming Events</h2>
       
       <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="workshops">
           <div class="event-card-date">
             <div class="day">10</div>
             <div class="month">Jan</div>
@@ -123,7 +123,7 @@
           </div>
         </a>
 
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="workshops">
           <div class="event-card-date">
             <div class="day">16</div>
             <div class="month">Jan</div>
@@ -138,7 +138,7 @@
           </div>
         </a>
 
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="community">
           <div class="event-card-date">
             <div class="day">24</div>
             <div class="month">Jan</div>
@@ -153,7 +153,7 @@
           </div>
         </a>
 
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="resource-fairs">
           <div class="event-card-date">
             <div class="day">31</div>
             <div class="month">Jan</div>
@@ -168,7 +168,7 @@
           </div>
         </a>
 
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="training">
           <div class="event-card-date">
             <div class="day">07</div>
             <div class="month">Feb</div>
@@ -183,7 +183,7 @@
           </div>
         </a>
 
-        <a href="#" class="event-card">
+        <a href="#" class="event-card" data-category="support-groups">
           <div class="event-card-date">
             <div class="day">14</div>
             <div class="month">Feb</div>
@@ -243,5 +243,40 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/webflow-script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const eventCards = document.querySelectorAll('.event-card[data-category]');
+  
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all pills
+      filterPills.forEach(p => p.classList.remove('active'));
+      
+      // Add active class to clicked pill
+      this.classList.add('active');
+      
+      // Get the filter value
+      const filterValue = this.getAttribute('data-filter');
+      
+      // Show/hide events based on filter
+      eventCards.forEach(card => {
+        if (filterValue === 'all') {
+          card.style.display = '';
+        } else {
+          const cardCategory = card.getAttribute('data-category');
+          if (cardCategory === filterValue) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
