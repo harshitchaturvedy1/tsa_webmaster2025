@@ -9,6 +9,155 @@
 <link href="../css/shared.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
 <link href="../images/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<style>
+/* Calendar Styles */
+.calendar-view {
+  display: none;
+  margin-top: 2rem;
+}
+
+.calendar-view.active {
+  display: block;
+}
+
+.calendar-container {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.calendar-header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.calendar-header-nav button {
+  background: #f0f0f0;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.calendar-header-nav button:hover {
+  background: #e85d3b;
+  color: white;
+}
+
+.calendar-month {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar-day-header {
+  background: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #666;
+  font-size: 0.9rem;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.calendar-day-header:last-child {
+  border-right: none;
+}
+
+.calendar-date {
+  padding: 1rem;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calendar-date:last-child {
+  border-right: none;
+}
+
+.calendar-date:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-date:hover {
+  background: #f8f9fa;
+}
+
+.calendar-date.other-month {
+  background: #fafafa;
+  color: #ccc;
+}
+
+.calendar-date.today {
+  background: #e85d3b;
+  color: white;
+}
+
+.calendar-date.has-event {
+  background: #e8f5e9;
+  border-top: 3px solid #e85d3b;
+}
+
+.calendar-date.today.has-event {
+  background: #e85d3b;
+}
+
+.calendar-date-number {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.calendar-date-events {
+  font-size: 0.75rem;
+  color: #666;
+  overflow: hidden;
+  max-height: 50px;
+}
+
+.calendar-date.today .calendar-date-events {
+  color: rgba(255,255,255,0.9);
+}
+
+.calendar-event-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #e85d3b;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.calendar-date.today .calendar-event-dot {
+  background: white;
+}
+
+.list-view {
+  display: block;
+}
+
+.list-view.hidden {
+  display: none;
+}
+</style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -106,6 +255,20 @@
       <!-- Upcoming Events -->
       <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Upcoming Events</h2>
       
+      <!-- Calendar View -->
+      <div class="calendar-view" id="calendarView">
+        <div class="calendar-container">
+          <div class="calendar-header-nav">
+            <button id="prevMonth"><i class="ph ph-arrow-left"></i> Previous</button>
+            <div class="calendar-month" id="monthDisplay">January 2025</div>
+            <button id="nextMonth">Next <i class="ph ph-arrow-right"></i></button>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+      </div>
+
+      <!-- List View -->
+      <div class="list-view" id="listView">
       <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
         <a href="#" class="event-card" data-category="workshops">
           <div class="event-card-date">
@@ -198,6 +361,7 @@
         <p style="color: #888;">View recordings and resources from previous events.</p>
         <a href="#" class="btn-secondary" style="margin-top: 1rem;">Browse Past Events</a>
       </div>
+      </div>
     </div>
   </div>
 </section>
@@ -241,7 +405,122 @@
 document.addEventListener('DOMContentLoaded', function() {
   const filterPills = document.querySelectorAll('.filter-pill');
   const eventCards = document.querySelectorAll('.event-card[data-category]');
+  const viewToggleButtons = document.querySelectorAll('.view-toggle button');
+  const calendarView = document.getElementById('calendarView');
+  const listView = document.getElementById('listView');
+  const calendarGrid = document.getElementById('calendarGrid');
+  const monthDisplay = document.getElementById('monthDisplay');
+  const prevMonth = document.getElementById('prevMonth');
+  const nextMonth = document.getElementById('nextMonth');
   
+  // Event data with dates (month: 0-11, day: 1-31)
+  const eventData = [
+    { day: 18, month: 11, title: 'Holiday Resource Fair', category: 'resource-fairs' },
+    { day: 10, month: 0, title: 'Money Matters: Building Credit & Savings', category: 'workshops' },
+    { day: 16, month: 0, title: 'Getting Hired: Resume & Interview Skills', category: 'workshops' },
+    { day: 24, month: 0, title: 'Parenting in the Digital Age', category: 'community' },
+    { day: 31, month: 0, title: 'Understanding Your Health Insurance Options', category: 'resource-fairs' },
+    { day: 7, month: 1, title: 'Tech Basics for Adults 55+', category: 'training' },
+    { day: 14, month: 1, title: 'Accessing Mental Health & Substance Abuse Services', category: 'support-groups' }
+  ];
+  
+  let currentDate = new Date(2025, 0, 1);
+  
+  function generateCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+    
+    // Update month display
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    monthDisplay.textContent = monthNames[month] + ' ' + year;
+    
+    // Clear calendar
+    calendarGrid.innerHTML = '';
+    
+    // Add day headers
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayNames.forEach(day => {
+      const header = document.createElement('div');
+      header.className = 'calendar-day-header';
+      header.textContent = day;
+      calendarGrid.appendChild(header);
+    });
+    
+    // Add date cells
+    let currentCell = new Date(startDate);
+    for (let i = 0; i < 42; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'calendar-date';
+      
+      if (currentCell.getMonth() !== month) {
+        cell.classList.add('other-month');
+      }
+      
+      const today = new Date();
+      if (currentCell.getDate() === today.getDate() && 
+          currentCell.getMonth() === today.getMonth() && 
+          currentCell.getFullYear() === today.getFullYear()) {
+        cell.classList.add('today');
+      }
+      
+      // Check for events on this date
+      const eventsOnDate = eventData.filter(e => 
+        e.day === currentCell.getDate() && e.month === currentCell.getMonth()
+      );
+      
+      if (eventsOnDate.length > 0) {
+        cell.classList.add('has-event');
+      }
+      
+      cell.innerHTML = `
+        <div class="calendar-date-number">${currentCell.getDate()}</div>
+        <div class="calendar-date-events">
+          ${eventsOnDate.slice(0, 2).map(e => `<span class="calendar-event-dot"></span>`).join('')}
+          ${eventsOnDate.length > 2 ? `<span>+${eventsOnDate.length - 2}</span>` : ''}
+        </div>
+      `;
+      
+      calendarGrid.appendChild(cell);
+      currentCell.setDate(currentCell.getDate() + 1);
+    }
+  }
+  
+  // View toggle functionality
+  viewToggleButtons.forEach((btn, index) => {
+    btn.addEventListener('click', function() {
+      viewToggleButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      if (index === 0) {
+        // List view
+        listView.classList.remove('hidden');
+        calendarView.classList.remove('active');
+      } else {
+        // Calendar view
+        listView.classList.add('hidden');
+        calendarView.classList.add('active');
+        generateCalendar();
+      }
+    });
+  });
+  
+  // Calendar navigation
+  prevMonth.addEventListener('click', function() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    generateCalendar();
+  });
+  
+  nextMonth.addEventListener('click', function() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    generateCalendar();
+  });
+  
+  // Filter functionality
   filterPills.forEach(pill => {
     pill.addEventListener('click', function(e) {
       e.preventDefault();
