@@ -2,13 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Works Cited | Forsyth Bridge</title>
-<meta content="Sources and citations for Forsyth Bridge content." name="description"/>
+<title>References | Forsyth Bridge</title>
+<meta content="Sources and citations for Forsyth Bridge." name="description"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <link href="../css/tsa-webmaster-64beab.webflow.shared.56492c9b5.css" rel="stylesheet" type="text/css"/>
 <link href="../css/shared.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
 <link href="../images/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<style>
+.references-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.references-section h2 {
+  color: #1a1a1a;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.references-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.references-section li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  line-height: 1.6;
+}
+
+.references-section li:last-child {
+  border-bottom: none;
+}
+
+.section-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #e85d3b 0%, #d44d2b 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+</style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -22,14 +67,12 @@
     <nav role="navigation" class="navbar_menu is-page-height-tablet w-nav-menu">
       <div class="navbar_menu-links">
         <a href="../index.html" class="navbar_link w-nav-link">Home</a>
-        
         <a href="resources.html" class="navbar_link w-nav-link">Resources</a>
         <a href="events.html" class="navbar_link w-nav-link">Events</a>
         <a href="about.html" class="navbar_link w-nav-link">About</a>
         <a href="get-involved.html" class="navbar_link w-nav-link">Get Involved</a>
         <a href="emergency.html" class="navbar_link w-nav-link" style="color: #dc3545;">Emergency</a>
         <a href="portal-login.html" id="auth-link" class="navbar_link w-nav-link navbar-highlight">Partner Portal</a>
-      </div>
       </div>
     </nav>
     <div class="navbar_menu-button w-nav-button">
@@ -46,29 +89,116 @@
 <header class="page-header">
   <div class="padding-global">
     <div class="container-medium">
-      <div class="text-style-tagline">References</div>
-      <h1>Works Cited</h1>
-      <p>Sources and citations used in the development of Forsyth Bridge.</p>
+      <div class="text-style-tagline">Documentation</div>
+      <h1>References & Documentation</h1>
+      <p>Sources, credits, and technical documentation for Forsyth Bridge.</p>
     </div>
   </div>
 </header>
 
-<!-- Sources Section -->
+<!-- References Content -->
 <section style="padding: 4rem 0; background: white;">
   <div class="padding-global">
     <div class="container-large">
-      <div style="display: flex; justify-content: center; align-items: center; min-height: 600px;">
-        <iframe 
-          src="../tsawebmaster25_sources.pdf" 
-          style="width: 100%; height: 800px; border: none; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);"
-          title="Works Cited PDF">
-        </iframe>
+
+      <!-- Design & Logic Credibility -->
+      <div class="references-section">
+        <h2><span class="section-icon">📚</span> Design & Logic Credibility</h2>
+        <ul>
+          <li><strong>Webflow Export:</strong> Professional web design framework used for base styling and responsive layout</li>
+          <li><strong>GSAP Animation Library:</strong> GreenSock Animation Platform v3.13.0 for smooth scroll-triggered animations and text effects</li>
+          <li><strong>Phosphor Icons:</strong> Modern icon library for UI elements and visual consistency</li>
+          <li><strong>JWT Authentication:</strong> JSON Web Tokens implemented for secure partner portal login system</li>
+          <li><strong>Responsive Design:</strong> Mobile-first approach with CSS Grid and Flexbox for all screen sizes</li>
+        </ul>
       </div>
+
+      <!-- Technical Features -->
+      <div class="references-section">
+        <h2><span class="section-icon">⚙️</span> Technical Features Implemented</h2>
+        <ul>
+          <li><strong>Dynamic Authentication Navbar:</strong> Real-time login status display across all pages using localStorage</li>
+          <li><strong>Partner Portal:</strong> Secure dashboard with JWT token verification and organization management</li>
+          <li><strong>Disclaimer Modal:</strong> First-visit notification for TSA competition disclosure</li>
+          <li><strong>Cookie Consent:</strong> GDPR-compliant cookie management system</li>
+          <li><strong>Multi-page Static Site:</strong> 16+ HTML pages with consistent navigation and footer</li>
+          <li><strong>API Endpoints:</strong> Server-side login, signup, logout, and token verification via Vercel Functions</li>
+        </ul>
+      </div>
+
+      <!-- Development Work Log -->
+      <div class="references-section">
+        <h2><span class="section-icon">📋</span> Development Work Log</h2>
+        <ul>
+          <li><strong>Project Setup:</strong> Created multi-page static site structure with consistent navigation and footer</li>
+          <li><strong>Styling Implementation:</strong> Webflow-based CSS framework with custom shared styles</li>
+          <li><strong>Animation System:</strong> GSAP ScrollTrigger and SplitText plugins for entrance animations</li>
+          <li><strong>Authentication System:</strong> JWT-based login/signup with demo users (admin/password123, partner/partner123)</li>
+          <li><strong>Partner Portal:</strong> Dashboard with stats, organization info, services, and events management</li>
+          <li><strong>Vercel Deployment:</strong> Configured serverless functions for API endpoints with CORS support</li>
+          <li><strong>Security:</strong> Environment variables for JWT secret, no hardcoded sensitive data</li>
+        </ul>
+      </div>
+
+      <!-- Technology Stack -->
+      <div class="references-section">
+        <h2><span class="section-icon">🛠️</span> Technology Stack</h2>
+        <ul>
+          <li><strong>Frontend:</strong> HTML5, CSS3, Vanilla JavaScript (ES6+)</li>
+          <li><strong>Animation:</strong> GSAP v3.13.0 with ScrollTrigger and SplitText plugins</li>
+          <li><strong>Icons:</strong> Phosphor Icons v2.1.1</li>
+          <li><strong>Authentication:</strong> JWT (jsonwebtoken package), localStorage</li>
+          <li><strong>Backend:</strong> Node.js, Vercel Serverless Functions</li>
+          <li><strong>Deployment:</strong> Vercel (primary), GitHub Pages (static fallback)</li>
+          <li><strong>Version Control:</strong> Git/GitHub</li>
+        </ul>
+      </div>
+
+      <!-- Browser Compatibility & Tech -->
+      <div class="references-section">
+        <h2><span class="section-icon">🌐</span> Browser Compatibility</h2>
+        <ul>
+          <li><strong>Chrome/Chromium:</strong> Full support including animations and API calls</li>
+          <li><strong>Firefox:</strong> Full support with all features</li>
+          <li><strong>Safari:</strong> Full support, tested on latest versions</li>
+          <li><strong>Mobile Browsers:</strong> Responsive design works on iOS Safari, Chrome Mobile, Samsung Internet</li>
+          <li><strong>ES6+ Support:</strong> Uses modern JavaScript features requiring modern browsers</li>
+        </ul>
+      </div>
+
+      <!-- Copyright & Attribution -->
+      <div class="references-section">
+        <h2><span class="section-icon">©️</span> Copyright & Attribution</h2>
+        <ul>
+          <li><strong>GSAP:</strong> GreenSock Animation Platform - Licensed under Standard License</li>
+          <li><strong>Phosphor Icons:</strong> Open source icon library under MIT License</li>
+          <li><strong>Webflow Framework:</strong> Base CSS framework from Webflow export</li>
+          <li><strong>Content:</strong> All fictional content created for TSA Webmaster 2025-26 Competition</li>
+          <li><strong>Images:</strong> Stock images sourced from public domain and free-to-use resources</li>
+          <li><strong>Colors & Design:</strong> Original design created specifically for this project</li>
+        </ul>
+      </div>
+
+      <!-- Image Credits -->
+      <div class="references-section">
+        <h2><span class="section-icon">🖼️</span> Image & Media Credits</h2>
+        <ul>
+          <li><strong>Hero Background:</strong> Professional community images for visual appeal</li>
+          <li><strong>Icons:</strong> Phosphor Icons library (open source)</li>
+          <li><strong>Favicon/App Icon:</strong> Custom created for Forsyth Bridge branding</li>
+          <li><strong>Social Preview Images:</strong> Custom designed OG images for link sharing</li>
+        </ul>
+      </div>
+
+      <!-- Note -->
+      <div style="margin-top: 3rem; padding: 2rem; background: #e8f4f8; border-radius: 8px; border-left: 4px solid #e85d3b;">
+        <p style="margin: 0; color: #333;"><strong>⚠️ Important Note:</strong> This website was created solely for the 2025-26 TSA Webmaster Competition. All content, resources, and information presented are fictional and intended for competition evaluation purposes only.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <!-- Footer -->
 <footer class="simple-footer">
   <div class="footer-container">
