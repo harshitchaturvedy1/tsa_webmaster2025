@@ -372,6 +372,34 @@
   background: white;
 }
 
+.section_stats {
+  background: white;
+}
+
+/* Impact Section - Two Column Layout */
+.section_stats .padding-section-large > div:last-child {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.section_stats img {
+  width: 100%;
+  height: auto;
+  display: block;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Mobile Responsive - Ensure image stays visible */
+@media (max-width: 768px) {
+  .section_stats .padding-section-large > div:last-child {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 .partners_grid {
   display: flex;
   flex-wrap: wrap;
