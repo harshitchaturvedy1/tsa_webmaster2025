@@ -14,6 +14,121 @@
 <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon"/>
 <link href="images/app-icon.png" rel="apple-touch-icon"/>
 <style>
+/* DISCLAIMER MODAL */
+.disclaimer-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.disclaimer-overlay.active {
+  display: flex;
+}
+
+.disclaimer-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.disclaimer-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.disclaimer-icon {
+  width: 40px;
+  height: 40px;
+  background: #e85d3b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.disclaimer-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.disclaimer-subtitle {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.disclaimer-content {
+  margin: 1.5rem 0;
+}
+
+.disclaimer-content p {
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.disclaimer-content strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.disclaimer-quote {
+  border-left: 4px solid #e85d3b;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.disclaimer-btn {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+
+.disclaimer-btn:hover {
+  background: #333;
+}
+
 .page-wrapper {
   opacity: 0;
   animation: fadeIn 0.25s ease-out forwards;
@@ -444,6 +559,27 @@
 </style>
 </head>
 <body>
+
+<!-- Disclaimer Modal -->
+<div class="disclaimer-overlay" id="disclaimerOverlay">
+  <div class="disclaimer-modal">
+    <div class="disclaimer-header">
+      <div class="disclaimer-icon">⚠</div>
+      <div>
+        <h2 class="disclaimer-title">Important Notice</h2>
+        <p class="disclaimer-subtitle">Please read this disclaimer before continuing</p>
+      </div>
+    </div>
+    <div class="disclaimer-content">
+      <p><strong>This is not a real organization or community resource hub.</strong> This website was created solely for the purpose of the <strong>2025 TSA Webmaster Competition.</strong></p>
+      <p>All content, resources, volunteer opportunities, and information presented on this site are <strong>fictional and intended for competition use only.</strong></p>
+      <div class="disclaimer-quote">
+        For complete documentation including our work log, references, and copyright checklist, please visit our <strong>References Page.</strong>
+      </div>
+    </div>
+    <button class="disclaimer-btn" onclick="dismissDisclaimer()">I Understand</button>
+  </div>
+</div>
 <div class="page-wrapper">
 <div class="global-styles w-embed">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
@@ -1133,6 +1269,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 </script>
+
+<!-- Disclaimer Modal Script -->
+<script>
+function dismissDisclaimer() {
+  localStorage.setItem('disclaimerSeen', 'true');
+  document.getElementById('disclaimerOverlay').classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (!localStorage.getItem('disclaimerSeen')) {
+    document.getElementById('disclaimerOverlay').classList.add('active');
+  }
+});
+</script>
+
 <script src="js/auth-navbar.js"></script>
 <script src="js/cookie-consent.js"></script>
 </body>
