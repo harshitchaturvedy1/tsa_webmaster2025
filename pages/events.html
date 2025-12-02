@@ -106,6 +106,86 @@
   color: #ccc;
 }
 
+.calendar-date.selected {
+  background: #e85d3b !important;
+  color: white;
+  font-weight: 600;
+}
+
+.event-detail-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-detail-modal.active {
+  display: flex;
+}
+
+.event-detail-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.event-detail-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f0f0f0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.event-detail-close:hover {
+  background: #e85d3b;
+  color: white;
+}
+
+.event-detail-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.event-detail-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.event-detail-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.event-detail-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
 .calendar-date.today {
   background: #e85d3b;
   color: white;
@@ -267,6 +347,14 @@
         </div>
       </div>
 
+      <!-- Event Details Modal -->
+      <div class="event-detail-modal" id="eventModal">
+        <div class="event-detail-content">
+          <button class="event-detail-close" id="closeModal">&times;</button>
+          <div id="eventDetailsContainer"></div>
+        </div>
+      </div>
+
       <!-- List View -->
       <div class="list-view" id="listView">
       <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
@@ -413,15 +501,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevMonth = document.getElementById('prevMonth');
   const nextMonth = document.getElementById('nextMonth');
   
-  // Event data with dates (month: 0-11, day: 1-31)
+  // Event data with dates and details (month: 0-11, day: 1-31)
   const eventData = [
-    { day: 18, month: 11, title: 'Holiday Resource Fair', category: 'resource-fairs' },
-    { day: 10, month: 0, title: 'Money Matters: Building Credit & Savings', category: 'workshops' },
-    { day: 16, month: 0, title: 'Getting Hired: Resume & Interview Skills', category: 'workshops' },
-    { day: 24, month: 0, title: 'Parenting in the Digital Age', category: 'community' },
-    { day: 31, month: 0, title: 'Understanding Your Health Insurance Options', category: 'resource-fairs' },
-    { day: 7, month: 1, title: 'Tech Basics for Adults 55+', category: 'training' },
-    { day: 14, month: 1, title: 'Accessing Mental Health & Substance Abuse Services', category: 'support-groups' }
+    { day: 18, month: 11, title: 'Holiday Resource Fair & Community Celebration', category: 'resource-fairs', time: '10:00 AM - 3:00 PM', location: 'Cumming City Center', description: 'Annual holiday gathering featuring local nonprofits, government services, healthcare providers, and more. Free food, children\'s activities, raffle drawings, and vendor tables.' },
+    { day: 10, month: 0, title: 'Money Matters: Building Credit & Savings', category: 'workshops', time: '6:30 PM - 8:00 PM', location: 'Denmark Library', description: 'Learn practical strategies for improving credit scores, understanding credit reports, and building emergency savings. Q&A session with financial counselor included.' },
+    { day: 16, month: 0, title: 'Getting Hired: Resume & Interview Skills', category: 'workshops', time: '9:00 AM - 12:00 PM', location: 'Cumming City Hall', description: 'One-on-one resume reviews, interview practice with local employers, and tips for standing out. Bring copies of your resume. Light refreshments provided.' },
+    { day: 24, month: 0, title: 'Parenting in the Digital Age', category: 'community', time: '7:00 PM - 8:30 PM', location: 'Post Road Library', description: 'Discuss social media safety, screen time management, and talking with teens about online risks. Expert panel includes educators and child counselors.' },
+    { day: 31, month: 0, title: 'Understanding Your Health Insurance Options', category: 'resource-fairs', time: '2:00 PM - 4:00 PM', location: 'Celebration\'s Banquet', description: 'Breakdown of marketplace plans, Medicaid eligibility, and subsidies. Meet with enrollment counselors to help you find affordable coverage for you and your family.' },
+    { day: 7, month: 1, title: 'Tech Basics for Adults 55+', category: 'training', time: '10:00 AM - 12:00 PM', location: 'Denmark Library', description: 'Learn smartphone and computer basics: email, video calls, finding services online. Small group instruction with patient instructors. Coffee and cookies provided.' },
+    { day: 14, month: 1, title: 'Accessing Mental Health & Substance Abuse Services', category: 'support-groups', time: '6:00 PM - 7:30 PM', location: 'Cumming City Center', description: 'Resource overview of local counseling, support groups, and crisis hotlines. Confidential one-on-one consultation available. All services explained with no judgment.' }
   ];
   
   let currentDate = new Date(2025, 0, 1);
@@ -484,6 +572,15 @@ document.addEventListener('DOMContentLoaded', function() {
           ${eventsOnDate.length > 2 ? `<span>+${eventsOnDate.length - 2}</span>` : ''}
         </div>
       `;
+      
+      // Add click handler to show events
+      if (eventsOnDate.length > 0) {
+        cell.style.cursor = 'pointer';
+        cell.addEventListener('click', function(e) {
+          e.preventDefault();
+          showEventDetails(currentCell.getDate(), currentCell.getMonth(), eventsOnDate);
+        });
+      }
       
       calendarGrid.appendChild(cell);
       currentCell.setDate(currentCell.getDate() + 1);
@@ -548,6 +645,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+  });
+
+  // Event details modal
+  const eventModal = document.getElementById('eventModal');
+  const closeModal = document.getElementById('closeModal');
+  const eventDetailsContainer = document.getElementById('eventDetailsContainer');
+  
+  function showEventDetails(day, month, events) {
+    let html = '<div>';
+    events.forEach((event, idx) => {
+      html += `
+        <div class="event-detail-item">
+          <div class="event-detail-title">${event.title}</div>
+          <div style="display: inline-block; background: #e85d3b; color: white; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: capitalize;">${event.category.replace('-', ' ')}</div>
+          <div class="event-detail-meta">
+            <span><i class="ph ph-clock"></i> ${event.time}</span>
+          </div>
+          <div class="event-detail-meta">
+            <span><i class="ph ph-map-pin"></i> ${event.location}</span>
+          </div>
+          <p style="margin-top: 1rem; color: #555; line-height: 1.6;">${event.description}</p>
+          <div style="margin-top: 1rem;">
+            <a href="#" class="btn-primary" style="background: #e85d3b; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; display: inline-block;">Register Now</a>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+    
+    eventDetailsContainer.innerHTML = html;
+    eventModal.classList.add('active');
+  }
+  
+  closeModal.addEventListener('click', function() {
+    eventModal.classList.remove('active');
+  });
+  
+  eventModal.addEventListener('click', function(e) {
+    if (e.target === eventModal) {
+      eventModal.classList.remove('active');
+    }
   });
 });
 </script>
