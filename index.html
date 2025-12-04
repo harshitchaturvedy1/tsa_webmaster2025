@@ -372,34 +372,6 @@
   background: white;
 }
 
-.section_stats {
-  background: white;
-}
-
-/* Impact Section - Two Column Layout */
-.section_stats .padding-section-large > div:last-child {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.section_stats img {
-  width: 100%;
-  height: auto;
-  display: block;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Mobile Responsive - Ensure image stays visible */
-@media (max-width: 768px) {
-  .section_stats .padding-section-large > div:last-child {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
 .partners_grid {
   display: flex;
   flex-wrap: wrap;
@@ -909,36 +881,31 @@ input[type="file"]:focus-visible {
 <!-- Impact Statistics -->
 <section id="impact" class="section_stats">
   <div class="padding-global">
-    <div class="container-large">
+    <div class="container-medium">
       <div class="padding-section-large">
         <div class="section-header" style="margin-bottom: 3rem;">
           <div class="text-style-tagline">Our Impact</div>
           <h2>Making a Real Difference</h2>
           <p>Every number represents a life changed, a family supported, and a community strengthened.</p>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
-          <div class="stats_component">
-            <div class="stats_list">
-              <div class="stats_item">
-                <div class="stats_number">15,000+</div>
-                <div class="stats_text">Individuals Served Annually</div>
-              </div>
-              <div class="stats_item">
-                <div class="stats_number">200+</div>
-                <div class="stats_text">Partner Organizations</div>
-              </div>
-              <div class="stats_item">
-                <div class="stats_number">95%</div>
-                <div class="stats_text">Client Satisfaction Rate</div>
-              </div>
-              <div class="stats_item">
-                <div class="stats_number">$2.5M</div>
-                <div class="stats_text">Resources Distributed</div>
-              </div>
+        <div class="stats_component">
+          <div class="stats_list">
+            <div class="stats_item">
+              <div class="stats_number">15,000+</div>
+              <div class="stats_text">Individuals Served Annually</div>
             </div>
-          </div>
-          <div style="border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-            <img src="images/pexels-team-hands.jpg" alt="Community members showing unity and teamwork with hands together" style="width: 100%; height: auto; display: block; object-fit: cover;"/>
+            <div class="stats_item">
+              <div class="stats_number">200+</div>
+              <div class="stats_text">Partner Organizations</div>
+            </div>
+            <div class="stats_item">
+              <div class="stats_number">95%</div>
+              <div class="stats_text">Client Satisfaction Rate</div>
+            </div>
+            <div class="stats_item">
+              <div class="stats_number">$2.5M</div>
+              <div class="stats_text">Resources Distributed</div>
+            </div>
           </div>
         </div>
       </div>
